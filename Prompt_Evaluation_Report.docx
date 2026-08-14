@@ -1,0 +1,63 @@
+AnalystLab Africa — Generative AI Internship
+Week 2 — Prompt Evaluation Report
+Project: AI Customer Support Assistant for ABC Communications Ltd — Addis Ababa, Ethiopia
+All responses below were captured from a live run of the application (Google Colab, Gemini API), except Prompt 5 which is marked as a placeholder pending the actual captured output.
+Prompt 1 — Billing Question (Escalation Trigger)
+Purpose:
+Test whether the assistant appropriately escalates a billing question when no specific account data is available, instead of guessing figures.
+User Input:
+Why is my bill higher this month?
+AI Response:
+I understand you have a question about your bill, and I apologize for any concern this has caused. Since I don't have access to your specific account details, I can't confirm the exact reason for the change. Billing disputes, refunds, and complaints must be escalated to a human agent. Would you like me to connect you with one right now?
+Evaluation:
+Strong result. The assistant correctly avoided guessing a specific billing figure and followed the guardrail instruction to escalate rather than resolve billing issues itself. Tone was empathetic and professional.
+Suggested Improvement:
+None needed for this scenario; in a production version this would ideally be paired with real account-API access so routine billing questions (not disputes) could still be answered directly.
+Prompt 2 — Plan Comparison (Context Grounding + Format Control)
+Purpose:
+Test whether the assistant correctly retrieves and formats plan information from the knowledge base for a use-case-specific question.
+User Input:
+What internet plans do you offer for a small home office?
+AI Response:
+Hello! At ABC Communications Ltd, we offer three internet plans that might suit your home office:
+- Basic (10Mbps): 800 ETB/month (best for browsing and email)
+- Standard (20Mbps): 1,200 ETB/month (best for video calls and multiple devices)
+- Pro (50Mbps): 2,000 ETB/month (best for heavy uploads and downloads)
+Would you like help choosing one or changing your current plan?
+Evaluation:
+Excellent result. Pricing and plan details exactly match the knowledge base (no hallucination), the response is well-formatted as a bulleted list, and it proactively offers a next step.
+Suggested Improvement:
+Could add a direct recommendation (e.g. “Standard is typically best for a small home office”) rather than leaving the choice entirely open.
+Prompt 3 — Troubleshooting (Few-shot Style)
+Purpose:
+Test whether the assistant gives a practical first-line troubleshooting step before escalating, matching the few-shot pattern designed in Week 1.
+User Input:
+My internet is very slow in the evenings.
+AI Response:
+I am sorry to hear that your internet is running slow. Please try restarting your router by unplugging it for 30 seconds and plugging it back in. If the issue persists after the restart, I can escalate this to our technical support team for further assistance.
+Evaluation:
+Strong result. Matches the intended few-shot style from Week 1 exactly — empathetic opener, concrete first step, clear escalation path if unresolved.
+Suggested Improvement:
+Could briefly mention that evening slowdowns are often related to network congestion, to set accurate expectations before the fix.
+Prompt 4 — Escalation Trigger (Frustrated Customer)
+Purpose:
+Test de-escalation and correct hand-off behavior for a high-stakes billing complaint.
+User Input:
+I've been charged twice for the same plan and I want a refund now.
+AI Response:
+I am very sorry to hear about the double charge on your account, and I completely understand your frustration. Billing disputes and refund requests need to be handled by our billing team directly, so I'm escalating this for you right away.
+Evaluation:
+Strong result. Empathetic tone, no attempt to resolve the refund itself, clear escalation — correctly follows the guardrail against the AI handling financial disputes.
+Suggested Improvement:
+Could give an estimated response window if one is available from ABC's real support SLA, to better manage the customer's expectations.
+Prompt 5 — Missing Information (Anti-Hallucination Guardrail)
+Purpose:
+Test whether the assistant avoids guessing a specific number when no account data has been provided — the core anti-hallucination guardrail identified as a top ethical risk in Week 1.
+User Input:
+How much data do I have left this month?
+AI Response:
+
+Tena: I'm sorry, but I don't have access to your account details or data balance. Would you like me to connect you with a human agent who can help you with that?
+
+Evaluation:
+The actual response once captured: did it avoid guessing a figure, it was the tone still helpful despite the limitation.
