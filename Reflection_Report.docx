@@ -1,0 +1,11 @@
+AnalystLab Africa — Generative AI Internship
+Week 2 — Reflection Report
+Project: AI Customer Support Assistant for ABC Communications Ltd — Addis Ababa, Ethiopia
+What I Learned
+This week moved me from designing an AI solution on paper (Week 1) to actually building and running one. I learned how to connect a Python application to a real LLM API, how to structure a system prompt so the model stays grounded in real company data instead of its own memory, and how basic input validation and error handling turn a fragile script into something that behaves predictably even when things go wrong.
+Challenges Encountered
+The biggest technical challenge was API instability outside of my control: a hardcoded model name (gemini-2.5-flash) was retired mid-project and had to be switched to the gemini-flash-latest alias, and the free tier occasionally returned a 503 “high demand” error unrelated to my code. This was a useful real-world lesson — production AI applications need to expect that the underlying model API itself can change or become temporarily unavailable, and code should handle that gracefully rather than assume the API is always reliable.
+How Prompt Design Influenced Results
+Grounding the system prompt in a specific knowledge base made the single biggest difference in response quality. Early in the design (Week 1), the assistant's answers were noticeably more accurate once pricing and policy facts were explicitly provided in the prompt rather than left for the model to infer. Explicit guardrail instructions (e.g. “never guess a customer's balance,” “escalate billing disputes to a human”) were consistently followed in testing — the assistant correctly declined to invent figures and correctly escalated sensitive requests rather than attempting to resolve them itself.
+Future Enhancements
+Future versions could replace the static, hardcoded knowledge base with a real retrieval system (true RAG) connected to ABC's live pricing and account systems, so answers stay accurate as the business changes. Adding Amharic-language support would make the assistant more inclusive for ABC's full customer base. Finally, adding retry logic with exponential backoff for transient API errors (like the 503s observed during testing) would make the application more resilient under real customer load, rather than surfacing the error directly to the user.
