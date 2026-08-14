@@ -1,0 +1,24 @@
+AnalystLab Africa — Generative AI Internship
+Week 2 — Problem Definition Report
+Project: AI Customer Support Assistant for ABC Communications Ltd — Addis Ababa, Ethiopia
+Business Problem
+ABC Communications Ltd, a telecom provider in Addis Ababa, Ethiopia, faces a support team overloaded with repetitive customer questions about billing, data plans, and technical troubleshooting. This drives long wait times, higher support costs, and weaker customer retention in a newly competitive telecom market. This project builds a functional prototype of an AI-powered support assistant that accepts a customer's question, sends it to a Large Language Model (LLM), and returns a grounded, accurate response — demonstrating a practical, working application of Generative AI rather than just a design on paper.
+Target Users
+ABC Communications' existing customers across Addis Ababa and surrounding areas — a mix of urban, tech-savvy customers who prefer chat-based support, and less tech-savvy customers who need clear, simple answers without technical jargon.
+Proposed AI Solution
+A command-line / notebook-based AI assistant (“Tena”) built in Python using Google's Gemini API (free tier, no credit card required). The application:
+•Accepts a customer's question as text input
+•Validates the input (rejects empty, too-short, or excessively long input with a clear message)
+•Grounds every response in a local knowledge base of ABC's real plans, pricing, and troubleshooting steps (a lightweight RAG-style approach), instead of letting the LLM rely on its own memory
+•Escalates billing disputes, refunds, and complaints to a human agent rather than attempting to resolve them itself
+•Handles API errors (e.g. temporary service outages) gracefully via try/except, without crashing
+Expected Benefits
+•Faster answers to common questions (plans, troubleshooting, payment methods) without waiting for a human agent
+•Reduced load on ABC's human support team, freeing them for complex or sensitive cases
+•Consistent, accurate answers grounded in real company data rather than guesses
+•A foundation that can later be connected to ABC's real account systems for personalized answers
+Potential Challenges
+•Free-tier API limits (requests per minute/day) could throttle the assistant under real customer volume
+•Occasional third-party API outages (observed directly during testing as a 503 “high demand” error) require graceful fallback handling
+•The current knowledge base is static and hardcoded; a production version would need to stay synced with ABC's actual live pricing and policies
+•English-only prompting risks underserving Amharic-speaking customers unless multilingual support is added
